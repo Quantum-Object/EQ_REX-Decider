@@ -1,4 +1,6 @@
-from NFA import NFA
+from REX import REX
 
-N=NFA(3,{1: [('a', 2),('a',4)],2: [('a', 2),('a',4)]},[2])
-N.show()
+
+(REX.to_NFA("aaab")).show()
+
+

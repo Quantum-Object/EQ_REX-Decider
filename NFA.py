@@ -1,4 +1,4 @@
-import REX
+
 import copy
 class NFA:
     def __init__(self, states, tran_func, accepted):

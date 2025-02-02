@@ -1,5 +1,4 @@
-import NFA
-
+from NFA import NFA
 
 #stirng 
 #function to check if a sting can be made by it.
