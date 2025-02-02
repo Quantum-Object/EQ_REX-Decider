@@ -1,11 +1,25 @@
 import REX
 import copy
 class NFA:
-    def __init__(self,states,tran_func,accepted):
-        self.q=states
-        self.f=tran_func
-        self.A=accepted
-    
+    def __init__(self, states, tran_func, accepted):
+        self.q= states #: int (number of states)
+        self.f = tran_func #: dict[int, list[tuple[str, int]]]  {1: ('a',2)) :: on recieving 'a' at state 1 go state 2}
+        self.A = accepted #: list[int] 
+    # printing 
+    def show(self):
+        print("Q={", end="")
+        for i in range(1, self.q + 1):
+            print(f" {i}", end="")
+        print(" }")
+        print("Acc={", end="")
+        for i in self.A:
+            print(f" {i}", end="")
+        print(" }")
+        print("δ={")
+        for i in self.f:
+            for (a, b) in self.f[i]:
+                print(f"  δ({i}, '{a}') -> {b}")
+        print("}")
     # Complement
     def c(self):
         cNFA= NFA(self.q,copy.deepcopy(self.f),[])
@@ -81,12 +95,6 @@ class NFA:
              
              
     
-        
-n=NFA(2,{1:[('a',2)]},[2])
-
-
-N=NFA.Conc(n,n)
-print(N.q,N.A,N.f)
 
     
         
