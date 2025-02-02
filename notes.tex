@@ -1,3 +1,14 @@
+
+## TASKS:
+1- w to NFA
+2- L(NFA)={} Decider (E_NFA)
+------
+3- visualiser of NFA
+
+
+
+
+
 an NFA is :
 1 a list of integers Q: states
 2 map (int,list(int)) this should work as f (function for transition)
@@ -25,3 +36,37 @@ so this is as follows:
 union (inter(a,not b),inter (b,not a))
 
 OK now :
+
+
+
+
+""" 
+(X)->X
+X+Y-> Conc(X,Y)
+ua*b-> Conc(u,conc(a.S(),b))
+X|Y-> union(X,Y)
+
+""" # (*,+,|) and (0,1) or (a,b,c)
+# so now we should look for brackets and strat parsing them in some stack manner
+# for instance
+#1. break s into ()()()().... 
+#2. make NFA for each of these:
+#3. so now make subNFA OK
+# a string is 
+
+
+    
+    
+
+    
+
+
+
+# what can we have now with no brackets well:
+# like (1*0 or 1+1+0 clearly we have to take it in account 1111==1+1+1+1 
+#now priorty of operation as follows:
+# star,conc,union (*,+,|)
+# for r1*r2+r3|r4
+# this means we should do it recursively starting from | and then + then *
+
+
