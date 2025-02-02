@@ -1,5 +1,6 @@
 
 import copy
+from collections import deque
 class NFA:
     def __init__(self, states, tran_func, accepted):
         self.q= states #: int (number of states)
@@ -89,8 +90,27 @@ class NFA:
                 N.f[i]=[]
             N.f[i].append(('ε',1+N1.q))
         return N
+                     
+    #E_NFA Decider <decides if NFA has L=ϕ>
+    def E_NFA(self):
+        #the following code used DSU,DFS treating an NFA as a Graph
+        #we are checking that (for all i in A -> i is not is DSU(1) )
+        dsu=set()
+        qu = deque()
+        qu.append(1)
+        while qu:
+            state=qu.pop()
+            dsu.add(state)
+            for _, i in self.f.get(state, []):  
+                if i not in dsu:
+                    qu.append(i)
+        has_A = any(i in dsu for i in self.A)
+        return not has_A
+                
+                
             
-               
+            
+            
         
              
              
