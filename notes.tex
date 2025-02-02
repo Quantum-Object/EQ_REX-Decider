@@ -1,0 +1,27 @@
+an NFA is :
+1 a list of integers Q: states
+2 map (int,list(int)) this should work as f (function for transition)
+3 list A (accepted states)
+------
+HOW TO turn a Rex to a NFA 
+(1|0)*(1*)
+
+
+------
+
+functions:
+1.union : 
+on input m:
+    
+2.not   :
+3.inter : use union and not (that is inter(a,b)=not(union(not a,not  b)))
+IDK about time complexity but it is not O(2^n)
+4.E_NFA(NFA X)
+
+
+now if we have NFA1 and NFA2  we can get 
+to get the (A^not(B)) U (not(A) ^ B)= C
+so this is as follows:
+union (inter(a,not b),inter (b,not a))
+
+OK now :
