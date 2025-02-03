@@ -38,7 +38,22 @@ class REX:
         out.append(w[len(w)-1])
         return out
             
-   
+    # this collect char that belongs to alphabet together     
+    def collect_strings(w):
+        l=[]
+        i=0
+        while (i<len(w)):
+            s=""
+            if w[i] in ['|',')','(','.','*']:
+                l.append(w[i])
+                i+=1
+            else:
+                s=""
+                while(i<len(w) and w[i] not in ['|',')','(','.','*']):
+                    s+=w[i]
+                    i+=1
+                l.append(s)
+        return l
         
         
     def RPN(w):
@@ -52,6 +67,6 @@ class REX:
         pn=[]
         st=[]
         w=(REX.add_conc(w))
-        
+        w=REX.collect_strings(w)
         print(w)
         
