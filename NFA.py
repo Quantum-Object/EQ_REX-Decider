@@ -5,7 +5,7 @@ class NFA:
     def __init__(self, states, tran_func, accepted):
         self.q= states #: int (number of states)
         self.f = tran_func #: dict[int, list[tuple[str, int]]]  {1: ('a',2)) :: on recieving 'a' at state 1 go state 2}
-        self.A = accepted #: list[int] 
+        self.A = set(accepted) #: set<int> 
     # printing 
     def show(self):
         print("Q={", end="")
@@ -21,17 +21,11 @@ class NFA:
             for (a, b) in self.f[i]:
                 print(f"  δ({i}, '{a}') -> {b}")
         print("}")
-    # Complement
-    def c(self):
-        cNFA= NFA(self.q,copy.deepcopy(self.f),[])
-        for i in range(1,self.q+1):
-            if i not in self.A:
-                cNFA.A.append(i)
-        return cNFA
+    
 
     #Union 
     def U(N1,N2):
-        Un=NFA(N1.q+N2.q+1,{},[])
+        Un=NFA(N1.q+N2.q+1,{},set())
         l=N1.q+1
         Un.f[1]=[('ε',2),('ε',1+l)]
         for i in N1.f:
@@ -43,9 +37,9 @@ class NFA:
             for (a,b) in N2.f[i]:
                 Un.f[i+l].append((a,b+l))
         for i in N1.A:
-            Un.A.append(i+1)
+            Un.A.add(i+1)
         for i in N2.A:
-            Un.A.append(i+l)
+            Un.A.add(i+l)
         return Un
     
     
@@ -53,8 +47,7 @@ class NFA:
     def S(self):
         sN= NFA(self.q+1,{},copy.deepcopy(self.A))
         #change no of states +1:
-        for i in range(len(self.A)):
-             sN.A[i]+=1
+        sN.A = {state + 1 for state in sN.A}
         # change no of all nodes in tr_function
         sN.f[1]=[('ε',2)]
         for i in self.f:
@@ -69,15 +62,14 @@ class NFA:
                 sN.f[i]=[]
                 sN.f[i].append(('ε',1))
         # new state accepted to cover 'ε'
-        sN.A=[1]+sN.A
+        sN.A.add(1)
         return sN        
     
     
     #concatination
     def Conc(N1,N2):
         N=NFA(N1.q+N2.q,copy.deepcopy(N1.f),copy.deepcopy(N2.A))
-        for i in range(len(N2.A)):
-            N.A[i]+=N1.q
+        N.A = {state + N1.q for state in N.A}
         for i in N1.A:
             if i not in N.f:
                 N.f[i]=[]
@@ -105,11 +97,16 @@ class NFA:
         has_A = any(i in dsu for i in self.A)
         return not has_A
                 
-                
-            
-            
-            
+    def check_path(self,state,i,w):
+        if i==len(w):
+            return True if state in self.A else False
         
+        
+            
+    # A_NFA Decider <decides if NFA has accepts sting w>
+    def A_NFA(self,w):
+        # we gonna treat NFA as a graph and basically follow the transitions
+        pass
              
              
     
