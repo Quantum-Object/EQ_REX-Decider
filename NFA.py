@@ -40,7 +40,7 @@ class NFA:
                 Un.f[i+1].append((a,b+1))
         for i in N2.f:
             Un.f[i+l]=[]
-            for (a,b) in N1.f[i]:
+            for (a,b) in N2.f[i]:
                 Un.f[i+l].append((a,b+l))
         for i in N1.A:
             Un.A.append(i+1)
@@ -48,9 +48,6 @@ class NFA:
             Un.A.append(i+l)
         return Un
     
-    #Intersection 
-    def I(N1,N2):
-        return NFA.c(NFA.U(NFA.c(N1),NFA.c(N2)))
     
     #kleene Star
     def S(self):
@@ -85,7 +82,7 @@ class NFA:
             N.f[i+N1.q]=[]
             for (a,b) in N2.f[i]:
                 N.f[i+N1.q].append((a,b+N1.q))
-        for i in N2.A:
+        for i in N1.A:
             if i not in N.f:
                 N.f[i]=[]
             N.f[i].append(('ε',1+N1.q))
