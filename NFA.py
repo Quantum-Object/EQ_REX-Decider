@@ -56,11 +56,11 @@ class NFA:
         for i in range(len(self.A)):
              sN.A[i]+=1
         # change no of all nodes in tr_function
+        sN.f[1]=[('ε',2)]
         for i in self.f:
              sN.f[i+1]=[]
              for (a,b) in self.f[i]:
                  sN.f[i+1].append((a,b+1))
-        sN.f[1]=[('ε',2)]
         # from accepted to new start
         for  i in sN.A:
             if i in sN.f:
