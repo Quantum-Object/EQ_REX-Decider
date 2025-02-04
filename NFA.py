@@ -96,17 +96,25 @@ class NFA:
                     qu.append(i)
         has_A = any(i in dsu for i in self.A)
         return not has_A
-                
-    def check_path(self,state,i,w):
+    
+    #function for following transitions and check if path valid
+    def check_branch(self,state,i,w):
         if i==len(w):
             return True if state in self.A else False
+        acc=False
+        if state in self.f:
+            for a,b in self.f[state]:
+                if (a=='ε'):
+                    acc= acc or self.check_branch(b,i,w)
+                elif a==w[i]:
+                    acc= acc or self.check_branch(b,i+1,w)
+        return acc
         
-        
-            
+      
     # A_NFA Decider <decides if NFA has accepts sting w>
     def A_NFA(self,w):
         # we gonna treat NFA as a graph and basically follow the transitions
-        pass
+        return self.check_branch(1,0,w)
              
              
     

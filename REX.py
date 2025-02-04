@@ -27,15 +27,16 @@ class REX:
         # also
         # 11100 -> 11100
         out=[]
-        for i in range(len(w)-1):
-            if w[i+1]=='*' and  w[i]!=')':
-                out.append('.')
+        for i in range(0,len(w)-1):
+            if w[i+1]=='*' and  w[i]!= ')':
+                if len(out)>0 and out[-1]!='.' : out.append('.')
                 out.append(w[i])
             else:
                 out.append(w[i])
             if (w[i]=='*' and w[i+1] not in{'|', ')', '(', '.', '*'}):
-                out.append('.')
+                if len(out)>0 and out[-1]!='.' :out.append('.')
         out.append(w[-1])
+        print(out)
         return out
             
     # this collect char that belongs to alphabet together     
