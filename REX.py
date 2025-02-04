@@ -93,6 +93,28 @@ class REX:
             prn.append(st.pop())
         
         return prn
+    
+    def to_NFA(self):
+        prn=self.RPN()
+        st=[]
+        opt={'*','.','|'}
+        for i in prn:
+            if i not in opt:
+                st.append(REX.w_to_NFA(i))
+            else:
+                N1=st.pop()
+                if i=='*':
+                    st.append(N1.S())
+                elif i=='.':
+                    N2=st.pop()
+                    st.append(NFA.Conc(N2,N1))
+                else:
+                    N2=st.pop()
+                    st.append(NFA.U(N2,N1))
+        return st[-1]
+                
+                
+        
 
                 
     
