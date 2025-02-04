@@ -78,14 +78,15 @@ class NFA:
         N=NFA(N1.q+N2.q,copy.deepcopy(N1.f),copy.deepcopy(N2.A))
         for i in range(len(N2.A)):
             N.A[i]+=N1.q
-        for i in N2.f:
-            N.f[i+N1.q]=[]
-            for (a,b) in N2.f[i]:
-                N.f[i+N1.q].append((a,b+N1.q))
         for i in N1.A:
             if i not in N.f:
                 N.f[i]=[]
             N.f[i].append(('ε',1+N1.q))
+        for i in N2.f:
+            N.f[i+N1.q]=[]
+            for (a,b) in N2.f[i]:
+                N.f[i+N1.q].append((a,b+N1.q))
+        
         return N
                      
     #E_NFA Decider <decides if NFA has L=ϕ>
