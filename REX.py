@@ -23,21 +23,35 @@ class REX:
     
     # this adds necessary .<concat> operator
     def add_conc(w): # O(n)
-        # first turn every for 1111*00-> 111.1*.00
-        # also
-        # 11100 -> 11100
-        out=[]
-        for i in range(0,len(w)-1):
-            if w[i+1]=='*' and  w[i]!= ')':
-                if len(out)>0 and out[-1]!='.' : out.append('.')
-                out.append(w[i])
-            else:
-                out.append(w[i])
-            if (w[i]=='*' and w[i+1] not in{'|', ')', '(', '.', '*'}):
-                if len(out)>0 and out[-1]!='.' :out.append('.')
-        out.append(w[-1])
-        print(out)
-        return out
+        n=len(w)
+        # FINAAL time 
+        # : loop1: when * is found a . is added after it only when the following char is in {'(','Σ'}
+        out1=[]
+        opt={')','|','.','*'}
+        for i in range(n):
+            out1.append(w[i])
+            if w[i] == '*' and i + 1 < n and w[i + 1] not in opt:
+                 out1.append('.')
+        # loop2:when to add a . before *:
+        print(out1)
+        w=out1
+        out2=[]
+        i=n-1
+        while(i>=0):
+            out2.append(w[i])
+            if w[i]=='*':
+                i-=1
+                if i-1>0 and w[i-1]==')':
+                    
+                    while i>=0 and w[i]!='(':
+                        out2.append(w[i])
+                        i-=1
+                out2.append(w[i])    
+                if i-1>0 and  w[i-1] not in opt:
+                    out2.append('.')
+            i-=1
+        out2.reverse()
+        return out2
             
     # this collect char that belongs to alphabet together     
     def collect_strings(w):  #O(n)
@@ -54,6 +68,7 @@ class REX:
                     s.append(w[i])
                     i+=1
                 l.append("".join(s))
+        print(l)
         return l
         
         
