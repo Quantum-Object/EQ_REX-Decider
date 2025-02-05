@@ -97,10 +97,23 @@ class NFA:
         has_A = any(i in dsu for i in self.A)
         return not has_A
     
+    
+    # this function is to find εpsilon_coluser of a state 
+    def εpsilon_closure(self,state):
+        closure={state}
+        l=0
+        while len(closure)!=l:
+            l=len(closure)
+            for a,s in self.f[state]:
+                if a=='ε':
+                    closure.add(s)
+        return closure
+            
+        
     #function for following transitions and check if path valid
     def check_branch(self,state,i,w):
         if i==len(w):
-            return True if state in self.A else False
+            return any(state in self.A for state in self.εpsilon_closure(state))
         acc=False
         if state in self.f:
             for a,b in self.f[state]:
