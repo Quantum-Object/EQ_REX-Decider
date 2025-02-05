@@ -33,10 +33,10 @@ class REX:
             if w[i] == '*' and i + 1 < n and w[i + 1] not in opt:
                  out1.append('.')
         # loop2:when to add a . before *:
-        print(out1)
         w=out1
         out2=[]
-        i=n-1
+        print(w)
+        i=len(w)-1
         while(i>=0):
             out2.append(w[i])
             if w[i]=='*':
@@ -47,11 +47,19 @@ class REX:
                         out2.append(w[i])
                         i-=1
                 out2.append(w[i])    
-                if i-1>0 and  w[i-1] not in opt:
-                    out2.append('.')
+                if i-1>=0 and  w[i-1] not in {'(','|','.','*'}:
+                        out2.append('.')
             i-=1
         out2.reverse()
-        return out2
+        print(out2)
+        w=out2
+        out = [w[0]]  # Start with the first character
+        for i in range(1, len(w)):
+            if (w[i-1] == ')' and w[i] == '(') or (w[i-1] not in opt and w[i] == '(') or (w[i-1] == ')' and w[i] not in opt ):
+                out.append('.')
+            out.append(w[i])
+            
+        return out
             
     # this collect char that belongs to alphabet together     
     def collect_strings(w):  #O(n)
