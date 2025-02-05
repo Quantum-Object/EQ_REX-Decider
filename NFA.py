@@ -104,8 +104,8 @@ class NFA:
         l=0
         while len(closure)!=l:
             l=len(closure)
-            for a,s in self.f[state]:
-                if a=='ε':
+            for a, s in self.f.get(state, []):
+                if a == 'ε':
                     closure.add(s)
         return closure
             
