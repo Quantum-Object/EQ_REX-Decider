@@ -51,10 +51,12 @@ class REX:
                         out2.append(w[i])
                     if i-1>=0 and  w[i-1] not in {'(','|','.','*'}:
                         out2.append('.')
-                elif i-1>=0 and  w[i-1] not in {'(','|','.','*'}:
+                elif i-1>=0 and  w[i-1] not in {')','(','|','.','*'}:
+                    print(w[i-1])
                     out2.append(w[i-1])
                     i-=1
-                    out2.append('.')
+                    if i-1>=0 and  w[i-1] not in {')','(','|','.','*'}:
+                        out2.append('.')
             i-=1
         out2.reverse()
         w=out2
