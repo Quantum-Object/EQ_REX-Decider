@@ -1,13 +1,13 @@
 from NFA import NFA
 
-#stirng 
-#function to check if a sting can be made by it.
+#string 
+#function to check if a string can be made by it.
 
 class REX:
     def __init__(self, s):
         self.s = s
         
-    def w_to_NFA(s ): # O(n)
+    def w_to_NFA(s): # O(n)
         # this should only deal with the following form 
         # {w| w is a binary string not containing {*,+}}
         w=s
@@ -15,11 +15,7 @@ class REX:
         for i in range(1,N.q):
             N.f[i]=[(w[i-1],i+1)]
         return N
-        
-    def to_NFA(self):
-        #here we turn a full Rex to NFA
-        #for (11)*0 first this is (s1)*s2
-        pass
+
     
     # this adds necessary .<concat> operator
     def add_conc(w): # O(n)
@@ -126,6 +122,15 @@ class REX:
         return prn
     
     def to_NFA(self):
+        """
+        Converts the regular expression to an NFA (Non-deterministic Finite Automaton).
+
+        This method first converts the regular expression to its Reverse Polish Notation (RPN)
+        and then constructs the corresponding NFA using a stack-based approach.
+
+        Returns:
+            NFA: The NFA that represents the given regular expression.
+        """
         prn=self.RPN()
         st=[]
         opt={'*','.','|'}

@@ -84,3 +84,25 @@ we need to finish :
 2-evalute it aka toNFA
 
 3- simulate(w,NFA) !!
+
+
+4-fix ADDDD Conc
+
+
+how to add conc???
+
+a string aaaaab*(aa)*(b)-> aaaaa.b*.(aa)*.(b)
+--so if * exist must be followed by a . unless it is the last char
+NOTE (a*|b), (a*b) , (a*)b: here the . is not gonna be added
+so **
+FINAL NOTE:  when * is found a . is added after it only when the following char is in {'(','Σ'}
+
+aaaa*.bb*
+--so if * exists:
+    before is can be :
+                    { (...)*-> this means find '(' and add a .(...)*}
+                 or { a*-> this means find add a * before .a* } 
+
+
+
+
