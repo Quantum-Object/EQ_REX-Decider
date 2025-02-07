@@ -14,7 +14,7 @@ To install EQ(REX) Decider, follow these steps:
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/EQ(REX)-Decider.git
+    git clone https://github.com/Quantum-Object/EQ(REX)-Decider.git
     ```
 2. Navigate to the project directory:
     ```bash
