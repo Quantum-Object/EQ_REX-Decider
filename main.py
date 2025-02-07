@@ -4,12 +4,12 @@ from strings_generator import string_generator
 
 def main():
     print("Hello!")
-    print("for string generator press 1")
-    print("for checking w ∈ L(rex) press 2")
+    print("for string generator press 1️⃣")
+    print("for checking w ∈ L(rex) press 2️⃣")
     inp=input()
-    if inp=='1':
+    if inp=='2':
         A_REX_Decider()
-    elif inp=='2':
+    elif inp=='1':
         string_generator()
     else:
         print("You entered a wrong input 😕")

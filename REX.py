@@ -1,13 +1,13 @@
 from NFA import NFA
 
 #string 
-#function to check if a string can be made by it.
+#function to check if a sting can be made by it.
 
 class REX:
     def __init__(self, s):
         self.s = s
         
-    def w_to_NFA(s): # O(n)
+    def w_to_NFA(s ): # O(n)
         # this should only deal with the following form 
         # {w| w is a binary string not containing {*,+}}
         w=s
@@ -41,10 +41,12 @@ class REX:
                     while i>=0 and w[i]!='(':
                         out2.append(w[i])
                         i-=1
+                    if (i>=0):
                         out2.append(w[i])
                     if i-1>=0 and  w[i-1] not in {'(','|','.','*'}:
                         out2.append('.')
                 elif i-1>=0 and  w[i-1] not in {')','(','|','.','*'}:
+                    out2.append(w[i-1])
                     i-=1
                     if i-1>=0 and  w[i-1] not in {')','(','|','.','*'}:
                         out2.append('.')
@@ -57,6 +59,7 @@ class REX:
                 out.append('.')
             out.append(w[i])
         return out
+            
     # this collect char that belongs to alphabet together     
     def collect_strings(w):  #O(n)
         l=[]
@@ -73,6 +76,7 @@ class REX:
                     i+=1
                 l.append("".join(s))
         return l
+        
         
     def RPN(self):
         w=self.s
@@ -113,15 +117,6 @@ class REX:
         return prn
     
     def to_NFA(self):
-        """
-        Converts the regular expression to an NFA (Non-deterministic Finite Automaton).
-
-        This method first converts the regular expression to its Reverse Polish Notation (RPN)
-        and then constructs the corresponding NFA using a stack-based approach.
-
-        Returns:
-            NFA: The NFA that represents the given regular expression.
-        """
         prn=self.RPN()
         st=[]
         opt={'*','.','|'}
@@ -139,15 +134,3 @@ class REX:
                     N2=st.pop()
                     st.append(NFA.U(N2,N1))
         return st[-1]
-                
-                
-        
-
-                
-    
-    
-                
-                
-        
-        
-        
