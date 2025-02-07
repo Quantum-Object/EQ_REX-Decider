@@ -1,6 +1,7 @@
 from REX import REX
 
 def A_REX_Decider():
+    print("A_Rex_Decider running ... ")
     rex=REX(input("Regular Expression :").replace(" ", ""))
     w=input("string w to be checked :")
     

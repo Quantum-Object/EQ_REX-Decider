@@ -1,25 +1,19 @@
-from REX import REX
-from NFA import NFA
-
+from A_REX_Decider import A_REX_Decider
+from strings_generator import string_generator
 
 
 def main():
-    rex=REX(input("Regular Expression :").replace(" ", ""))
+    print("Hello!")
+    print("for string generator press 1")
+    print("for checking w ∈ L(rex) press 2")
+    inp=input()
+    if inp=='1':
+        A_REX_Decider()
+    elif inp=='2':
+        string_generator()
+    else:
+        print("You entered a wrong input 😕")
     
-    N=rex.to_NFA()
-    print("Equavilant NFA :")
-    N.show()
-    for i in range(100):
-        w= bin(i)[2:]
-        s1=w.replace('1', 'a').replace('0', 'b')
-        s2=w.replace('0', 'a').replace('1', 'b')
-        t=N.A_NFA(s1)
-        t2=N.A_NFA(s2)
-        if t:
-            print(f"{s1} ∈ L({rex.s}) ✅")
-        if t2:
-            print(f"{s2} ∈ L({rex.s}) ✅")
         
 
-#(a|b*)(a|b)
 main()
