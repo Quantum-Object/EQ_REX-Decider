@@ -3,6 +3,12 @@
 ## Overview
 EQ(REX) Decider is a tool designed to help users make decisions based on a set of predefined criteria. It leverages advanced algorithms to provide the best possible recommendations.
 
+### this provides the following :
+- A_REX Decider (acceptance problem for regular expressions)
+- EQ_REX Decider (Equivalence problem for regular expressions), keep in mind that EQ_REX is NP
+- string generator from the Langauge of a regular expression
+ 
+
 ## Features
 - User-friendly interface
 - Customizable decision criteria
@@ -27,6 +33,8 @@ To start using EQ(REX) Decider, run the following command:
 ```bash
 python3 main.py
 ```
+note: we are only using the following operations (*: Kleene star, |: Union, . : Concatenation (you can ignore it if you want) )
+example: a*(a U b).b := a*(a|b)b or a*(a|b)b
 Follow the on-screen instructions to input your decision criteria and receive recommendations.
 
 
