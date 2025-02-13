@@ -6,6 +6,8 @@ def A_REX_Decider():
     w=input("string w to be checked :")
     
     N=rex.to_NFA()
+    print("Here is the Equivalent NFA :")
+    N.show()
     if (N.A_NFA(w)):
         print(f"{w} ∈ L({rex.s}) ✅")
     else :
