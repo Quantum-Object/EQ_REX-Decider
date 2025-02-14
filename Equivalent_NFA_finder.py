@@ -5,5 +5,6 @@ def Equivalent_NFA_finder():
     N=rex1.to_NFA()
     print("Here is the Equivalent NFA :")
     N.show()
+    N.visualize()
     
     

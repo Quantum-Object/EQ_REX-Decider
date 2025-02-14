@@ -1,4 +1,5 @@
-
+import networkx as nx
+import matplotlib.pyplot as plt
 import copy
 from collections import deque
 class NFA:
@@ -131,12 +132,31 @@ class NFA:
              
              
     
+# Visualization method
+    def visualize(self):
+        G = nx.DiGraph()
 
-    
-        
-        
-        
+        # Add states (nodes)
+        for state in range(1, self.q + 1):
+            G.add_node(state, color='lightblue' if state not in self.A else 'lightgreen')
+
+        # Add transitions (edges)
+        for state in self.f:
+            for (symbol, next_state) in self.f[state]:
+                G.add_edge(state, next_state, label=symbol)
+
+        # Draw the graph
+        pos = nx.circular_layout(G)
+        node_colors = [G.nodes[node]['color'] for node in G.nodes]
+        edge_labels = {(u, v): d['label'] for u, v, d in G.edges(data=True)}
+
+        nx.draw(G, pos, with_labels=True, node_size=2000, node_color=node_colors, font_size=15, arrows=True)
+        nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
 
         
-        
-        
+
+        plt.title("NFA Visualization")
+        plt.show()
+
+
+
