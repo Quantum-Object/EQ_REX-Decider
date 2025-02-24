@@ -37,7 +37,7 @@ python3 main.py
 ```
 note: we are only using the following operations (\*: Kleene star, |: Union, . : Concatenation (you can ignore it if you want) )
 example: a\*(a U b).b:= a\*(a|b)b or a\*(a|b)b
-Follow the on-screen instructions to input your decision criteria and receive recommendations.
+-Follow the on-screen instructions to input your decision criteria and receive recommendations.
 
 
 
