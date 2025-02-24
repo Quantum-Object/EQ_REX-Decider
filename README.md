@@ -3,10 +3,12 @@
 ## Overview
 EQ(REX) Decider is a tool designed to help users make decisions based on a set of predefined criteria. It leverages advanced algorithms to provide the best possible recommendations.
 
-### this provides the following :
+### This provides the following :
 - A_REX Decider (acceptance problem for regular expressions)
 - EQ_REX Decider (Equivalence problem for regular expressions), keep in mind that EQ_REX is NP
 - string generator from the Langauge of a regular expression
+- NFA visualiser
+- 
  
 
 ## Features
